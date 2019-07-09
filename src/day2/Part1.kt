@@ -6,7 +6,7 @@ import java.io.File
 fun main() {
     var doubleLetterIds = 0
     var tripleLetterIds = 0
-    val boxIds = initBoxIds()
+    val boxIds = getBoxIds()
 
     for(id in boxIds) {
         val occurances = findOccurancesInId(id)
@@ -16,7 +16,7 @@ fun main() {
     println(doubleLetterIds * tripleLetterIds)
 }
 
-fun findOccurancesInId (id: String): Pair<Int, Int> {
+private fun findOccurancesInId (id : String) : Pair<Int, Int> {
     var letterCount = mutableMapOf<Char, Int>()
     for(letter in id) {
         letterCount.merge(letter, 1, Int::plus)
@@ -24,28 +24,26 @@ fun findOccurancesInId (id: String): Pair<Int, Int> {
     return checkMatches(letterCount)
 }
 
-fun checkMatches(map: Map<Char, Int>): Pair<Int, Int> {
-    var foundDouble = 0
-    var foundTriple = 0
+private fun checkMatches(map : Map<Char, Int>) : Pair<Int, Int> {
+    var foundDoubleLetter = 0
+    var foundTripleLetter = 0
     for(entry in map) {
         if(entry.value == 2) {
-            foundDouble = 1
+            foundDoubleLetter = 1
         }
-        if(entry.value == 3) {
-            foundTriple = 1
+        else if(entry.value == 3) {
+            foundTripleLetter = 1
         }
-        if(foundDouble == 1 && foundTriple == 1) {
+        if(foundDoubleLetter == 1 && foundTripleLetter == 1) {
             break
         }
     }
-    return Pair(foundDouble, foundTriple)
+    return Pair(foundDoubleLetter, foundTripleLetter)
 }
 
-fun initBoxIds(): List<String> {
+fun getBoxIds() : List<String> {
     var boxIds = ArrayList<String>()
-    File("C:\\Users\\Oskar\\Documents\\GitHub\\AOC2018\\src\\day2\\boxIds")
-        .forEachLine {
-            boxIds.add(it)
-        }
+    File("resources\\boxIds")
+        .forEachLine { boxIds.add(it) }
     return boxIds
 }

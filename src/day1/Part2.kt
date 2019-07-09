@@ -16,7 +16,7 @@ fun main() {
 
 fun initFrequencies(): List<Int> {
     var frequencies = ArrayList<Int>()
-    File("C:\\Users\\Oskar\\Documents\\GitHub\\AOC2018\\src\\day1\\frequencyInput")
+    File("resources\\frequencyInput")
         .forEachLine {
             val input = it.toInt()
             frequencies.add(input)
