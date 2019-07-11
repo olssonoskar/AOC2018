@@ -9,7 +9,6 @@ fun main() {
     println("The largest finite coordinate has a size of ${coordinate.area}")
     val area = findCompactArea(coordinates)
     println("The region in proximity to all coordinates has a size of $area")
-
 }
 
 private fun parseCoordinates(): List<Coordinate> {
